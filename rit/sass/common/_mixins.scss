@@ -1,0 +1,78 @@
+@mixin centerBlock { display: block; margin-left: auto; margin-right: auto; }
+
+
+@mixin col-set( $columns:2, $gap: 24 ) { 
+    > .column { width: calc( ( 100% - ( #{$columns} - 1 ) * #{$gap}px  ) / #{$columns} ); }
+    > .column:not(:nth-child(#{$columns}n) ) { 
+        margin-right: #{$gap}px;
+    }
+
+	> .column:nth-child(#{$columns}n) { 
+        margin-right: 0;
+    }
+}
+
+@mixin typoSet( $tagsList, $screen ) {
+	
+	@include minmedia($screen) {
+
+		@each $name, $size, $lineHeight in $tagsList {
+			body:not(.wp-admin)	#{$name} , .acf-block-preview #{$name} {
+			  font-size: #{ $size }px; line-height: #{ $lineHeight };
+			}
+		}
+		
+	}
+}
+
+
+
+@mixin xxlarge {
+	@media (max-width: 1801px) { @content; }
+ }
+ @mixin xmlarge {
+	@media (max-width: 1602px) { @content; }
+ }
+ @mixin xlarge {
+	@media (max-width: 1441px) { @content; }
+ }
+ @mixin xmdlarge {
+	@media (max-width: 1366px) { @content; }
+ }
+ @mixin xmedium {
+	@media (max-width: 1200px) { @content; }
+ }
+  
+ @mixin ipadbig {
+	@media (max-width: 1024px) { @content; }
+ }
+ 
+ @mixin ipad {
+	@media (max-width: 991px) { @content; }
+ }
+ 
+ @mixin small {
+	@media (max-width: 767px) { @content; }
+ }
+
+ @mixin xsmall {
+	@media (max-width: 641px) { @content; }
+ }
+
+ @mixin xxsmall {
+	@media (max-width: 481px) { @content; }
+ }
+
+ @mixin minmedia($screen) {
+	@media (min-width: $screen) { @content; }
+ }
+
+
+ @mixin positionAbsolute($top: 0, $left: 0, $height: 100%, $width: 100%) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  width: $width;
+  height: $height;
+  z-index: 0;
+ }
